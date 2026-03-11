@@ -16,7 +16,8 @@ Done — I made a plug-in scoring module for that workflow:
 [model_g_sqk_scoring_module_1a.py](sandbox:/mnt/data/model_g_sqk_scoring_module_1a.py)
 
 It is built around the logic we discussed: use the neutral/neutron-like branch to anchor the length scale 
-via the Compton wavelength, use the proton-like branch to calibrate charge, and only then apply the Brown/LaViolette (M/Q) ratio to get an active-mass scale. That matches the book’s use of the Turing 
+via the Compton wavelength, use the proton-like branch to calibrate charge, and only then apply the
+Brown/LaViolette (M/Q) ratio to get an active-mass scale. That matches the book’s use of the Turing 
 wavelength as the particle Compton wavelength, its treatment of (Q_y)/(\rho_y) as the active-charge side, 
 (S_g) as active gravitational mass, and the proton-like state as a secondary bifurcation off a neutral branch.
 
