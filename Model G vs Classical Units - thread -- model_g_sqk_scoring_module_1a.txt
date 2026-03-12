@@ -11,6 +11,72 @@ model_g_particle_1d_proton_batch_search_1c_refine.py
 
 =============================
 
+==== Example of how to run "model_g_particle_1d_proton_batch_search.py"-type code =========
+
+Yes — I made the non-GUI batch search script and also ran a quick coarse search.
+
+Files:
+[Batch search script](sandbox:/mnt/data/model_g_particle_1d_proton_batch_search.py)
+[Quick-search summary](sandbox:/mnt/data/model_g_proton_batch_search_quick/summary.txt)
+[Quick-search top candidates CSV](sandbox:/mnt/data/model_g_proton_batch_search_quick/top_candidates.csv)
+[Best candidate vs Kelly proton PNG](sandbox:/mnt/data/model_g_proton_batch_search_quick/best_candidate_vs_kelly_proton.png)
+[Best candidate profiles NPZ](sandbox:/mnt/data/model_g_proton_batch_search_quick/best_candidate_profiles.npz)
+
+What the script does:
+
+* uses the same 1D Model G equations as your GUI
+* builds a Kelly-style proton target profile
+* compares the final SQK (pY(x)) shape against that target after normalization
+* also compares the mirrored surface profile (x^2 pY(x))
+* writes ranked candidate parameter sets to CSV
+
+From the quick coarse run I did, the current best provisional proton-like candidate was:
+
+* `dy = 12.0`
+* `b = 29.0`
+* `g = 0.09`
+* `amp = 1.0`
+* `sx = 1.0`
+* `st = 1.5`
+* `Tseed = 3.0`
+* `sign = -1`
+
+with:
+
+* `pY_core = 0.288756...`
+* `Qproxy_int_pYdx = 0.164173...`
+* polarity = `positive-polarity (proton-like)`
+
+One caveat: that run was intentionally coarse (`nx=41`, `Tfinal=6`) just to get a fast first pass, 
+so this is a **provisional** best candidate, not yet a high-resolution final fit.
+
+You can run the script like this:
+
+```bash
+python3 /mnt/data/model_g_particle_1d_proton_batch_search.py
+```
+
+or for the same quick sweep I used:
+
+```bash
+python3 /mnt/data/model_g_particle_1d_proton_batch_search.py \
+  --outdir /mnt/data/model_g_proton_batch_search_quick \
+  --nx 41 --tfinal 6 \
+  --dy 9.5,10.5,12.0 \
+  --b 27,28,29 \
+  --g 0.09,0.10,0.11 \
+  --amp 1.0 \
+  --sx 0.9,1.0,1.1 \
+  --st 1.5 \
+  --Tseed 3.0
+```
+
+The natural next step is a second-stage refinement around that neighbourhood with a finer grid and 
+longer runtime.
+
+=============================
+
+
 Done — I made a plug-in scoring module for that workflow:
 
 [model_g_sqk_scoring_module_1a.py](sandbox:/mnt/data/model_g_sqk_scoring_module_1a.py)
